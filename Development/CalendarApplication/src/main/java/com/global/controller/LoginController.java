@@ -6,14 +6,16 @@
 package com.global.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class LoginController {
 	
-	@RequestMapping (value="/welcome", method = RequestMethod.GET)
-	public String welcomePage() {
+	@RequestMapping (value="/welcome")
+	public String welcomePage(ModelMap model) {
+		String message = " to calendar web application";
+		model.addAttribute("message", message);
 		return "welcome";
 	}
 	
