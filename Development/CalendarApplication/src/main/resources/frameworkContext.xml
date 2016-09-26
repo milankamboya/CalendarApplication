@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.0.xsd 
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd "
+		default-lazy-init="true" default-dependency-check="none" default-autowire="no">
+
+	<aop:config proxy-target-class="true"/>
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/calendarappdb" />
+		<property name="username" value="root" />
+		<property name="password" value="root" />
+	</bean>
+
+	<bean id="baseSessionFactory"	class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mappingLocations">
+			<value>classpath*:com/global/domain/*.hbm.xml</value>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect"> org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<!-- <prop key="hibernate.hbm2ddl.auto">create</prop> -->
+				<!-- <prop key="hibernate.cache.use_query_cache">true</prop> -->
+				<prop key="hibernate.jdbc.fetch_size">300</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="transactionManager" class="com.global.common.framework.impl.HibernateTransactionManager">
+		<property name="sessionFactory" ref="baseSessionFactory" />
+		<property name="nestedTransactionAllowed" value="true" />
+		<property name="globalRollbackOnParticipationFailure" value="false" />
+	</bean>
+	
+	<bean id="txAttribute" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" abstract="true">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="transactionAttributes">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="hibernateDao" parent="txAttribute">
+		<property name="target">
+			<bean class="com.global.common.framework.impl.HibernateDaoImpl">
+				<property name="sessionFactory" ref="baseSessionFactory"></property>
+			</bean>
+		</property>
+	</bean>
+</beans>

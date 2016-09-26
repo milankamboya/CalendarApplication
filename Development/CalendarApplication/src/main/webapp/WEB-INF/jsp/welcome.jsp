@@ -10,6 +10,14 @@
 
 Welcome Page
 ${message}
-	
+
+<br/>
+Testing hibernate changes with spring web mvc :
+<br/>
+
+Test Login Id : ${logindetails.loginuser} 
+<br/>
+Test Password : ${logindetails.password}
+<br/>	
 </body>
 </html>
