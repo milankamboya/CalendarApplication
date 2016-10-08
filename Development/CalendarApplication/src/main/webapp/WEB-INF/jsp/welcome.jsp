@@ -19,5 +19,8 @@ Test Login Id : ${logindetails.loginuser}
 <br/>
 Test Password : ${logindetails.password}
 <br/>	
+
+<a href="signup">New user? Please signup here</a>
+
 </body>
 </html>
