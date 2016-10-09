@@ -40,5 +40,13 @@
 		<property name="timeZone" type="string">
 			<column name="Time_Zone" length="25" not-null="true" />
 		</property>
+		
+		<property name="email" type="string">
+			<column name="Email" length="100" not-null="true" />
+		</property>
+		
+		<property name="isIsolated" type="string">
+			<column name="IsIsolated" length="2" not-null="true" />
+		</property>
 	</class>
 </hibernate-mapping>

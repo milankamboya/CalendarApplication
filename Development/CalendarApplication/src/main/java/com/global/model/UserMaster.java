@@ -15,14 +15,14 @@ public class UserMaster implements Serializable {
 	private Clob address;
 	private String userLanguage;
 	private String timeZone;
+	private String email;
+	private String isIsolated;
 	
-	public UserMaster(){
-		
-	}
+	public UserMaster(){}
 
 	public UserMaster(String userId, String firstName, String lastName, 
-			String gender, String phone, String dateOfbirth,
-			Clob address, String userLanguage, String timeZone) {
+			String gender, String phone, String dateOfbirth, Clob address, 
+			String userLanguage, String timeZone, String email, String isIsolated) {
 		this.userId = userId;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -32,6 +32,8 @@ public class UserMaster implements Serializable {
 		this.address = address;
 		this.userLanguage = userLanguage;
 		this.timeZone = timeZone;
+		this.email = email;
+		this.isIsolated = isIsolated;
 	}
 
 	public String getUserId() {
@@ -104,6 +106,22 @@ public class UserMaster implements Serializable {
 
 	public void setTimeZone(String timeZone) {
 		this.timeZone = timeZone;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getIsIsolated() {
+		return isIsolated;
+	}
+
+	public void setIsIsolated(String isIsolated) {
+		this.isIsolated = isIsolated;
 	}
 
 }
