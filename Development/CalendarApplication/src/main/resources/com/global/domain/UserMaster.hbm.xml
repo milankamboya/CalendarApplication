@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping default-cascade="save-update" auto-import="false">
+	<class name="com.global.model.UserMaster" table="user_master">
+		<id name="userId" type="string">
+			<column name="ID" length="25" />
+			<generator class="assigned" />
+		</id>
+		<property name="firstName" type="string">
+			<column name="First_Name" length="50" not-null="true" />
+		</property>
+		
+		<property name="lastName" type="string">
+			<column name="Last_Name" length="50" not-null="false" />
+		</property>
+		
+		<property name="gender" type="string">
+			<column name="Gender" length="6" not-null="false" />
+		</property>
+		
+		<property name="phone" type="string">
+			<column name="Phone" length="13" not-null="false" />
+		</property>
+		
+		<property name="dateOfbirth" type="string">
+			<column name="Date_Of_Birth" length="10" not-null="true" />
+		</property>
+		
+		<property name="address" type="blob">
+			<column name="Address" not-null="false" />
+		</property>
+		
+		<property name="userLanguage" type="string">
+			<column name="User_Language" length="3" not-null="true" />
+		</property>
+		
+		<property name="timeZone" type="string">
+			<column name="Time_Zone" length="25" not-null="true" />
+		</property>
+		
+		<property name="email" type="string">
+			<column name="Email" length="100" not-null="true" />
+		</property>
+		
+		<property name="isIsolated" type="string">
+			<column name="IsIsolated" length="2" not-null="true" />
+		</property>
+	</class>
+</hibernate-mapping>

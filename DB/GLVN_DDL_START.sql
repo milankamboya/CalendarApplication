@@ -74,6 +74,7 @@ CREATE TABLE `login_master` (
 
 LOCK TABLES `login_master` WRITE;
 /*!40000 ALTER TABLE `login_master` DISABLE KEYS */;
+INSERT INTO `login_master` VALUES ('1','milan','milan123','1');
 /*!40000 ALTER TABLE `login_master` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -104,6 +105,7 @@ CREATE TABLE `user_master` (
 
 LOCK TABLES `user_master` WRITE;
 /*!40000 ALTER TABLE `user_master` DISABLE KEYS */;
+INSERT INTO `user_master` VALUES ('1','milan','kamboya','male',NULL,'31/05/1990',NULL,'en','IST');
 /*!40000 ALTER TABLE `user_master` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -116,4 +118,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-09-15 23:09:59
+-- Dump completed on 2016-09-26 20:30:29
