@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
-	xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop" 
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.0.xsd 
-		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd "
-		default-lazy-init="true" default-dependency-check="none" default-autowire="no">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xmlns:context="http://www.springframework.org/schema/context"  
+	xsi:schemaLocation=
+		"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd 
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+		default-lazy-init="true">
 
-	<aop:config proxy-target-class="true"/>
+	<context:component-scan base-package="com.global.*" />
+	<tx:annotation-driven proxy-target-class="true" transaction-manager="transactionManager"/>
+	<!-- <aop:config proxy-target-class="true"/> -->
+	
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
@@ -38,6 +46,7 @@
 		<property name="globalRollbackOnParticipationFailure" value="false" />
 	</bean>
 	
+	<!-- This is to use with bean defining in XML. Check below hibernateDao bean -->
 	<bean id="txAttribute" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" abstract="true">
 		<property name="transactionManager" ref="transactionManager" />
 		<property name="transactionAttributes">

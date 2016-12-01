@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
-	xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop" 
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.0.xsd
-		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd "
-		default-lazy-init="true" default-dependency-check="none" default-autowire="no">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd" 
+		default-lazy-init="true" default-autowire="no">
 		
-		<aop:config proxy-target-class="true"/>
+		<!-- <aop:config proxy-target-class="true"/>
 		<bean id="myService" parent="txAttribute">
 			<property name="target">
 				<bean class="com.global.service.impl.MyServiceImpl">
@@ -15,9 +15,8 @@
 				</bean>
 			</property>
 		</bean>
-		
 		<bean id="myServiceDao" class="com.global.dao.impl.MyServiceDaoImpl">
 			<property name="hibernateDao" ref="hibernateDao" />
-		</bean>
+		</bean> -->
 		
 </beans>
