@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping default-cascade="save-update" auto-import="false">
+	<class name="com.global.model.EventMaster" table="event_master">
+		<id name="eventId" type="string">
+			<column name="ID" length="25" />
+			<generator class="assigned" />
+		</id>
+		<property name="eventTitle" type="string">
+			<column name="Title" length="100" not-null="true" />
+		</property>
+		<property name="description" type="blob">
+			<column name="Description" not-null="false" />
+		</property>
+		<property name="startDate" type="timestamp">
+			<column name="Start_Date" length="7" not-null="true" />
+		</property>
+		<property name="startTime" type="timestamp">
+			<column name="Start_Time" length="7" not-null="true" />
+		</property>
+		<property name="endDate" type="timestamp">
+			<column name="End_Date" length="7" not-null="true" />
+		</property>
+		<property name="endTime" type="timestamp">
+			<column name="End_Time" length="7" not-null="true" />
+		</property>
+		<property name="repeats" type="string">
+			<column name="Repeats" length="25" not-null="false" />
+		</property>
+		<property name="shared" type="blob">
+			<column name="Shared" not-null="false" />
+		</property>
+		<many-to-one name="user" class="com.global.model.UserMaster">
+			<column name="User_Id" length="25" not-null="true" />
+		</many-to-one>
+		
+	</class>
+</hibernate-mapping>
