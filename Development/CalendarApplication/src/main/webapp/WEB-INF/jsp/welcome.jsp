@@ -6,31 +6,18 @@
 <jsp:include page="fragments/header.jsp" />
 
 <body>
-<h2>Hello World!</h2>
+<div class="container" style="text-align: center;">
 <br>
 	<div style="text-align:center">
 		<h2>
-			This is first testing for CalendarApplication<br> <br>
+			Welcome to ${message}<br> <br>
 		</h2>
-		<h3>
-			<a href="welcome">Click here to See Welcome Message... </a>
-		</h3>
 	</div>
-Welcome Page
-${message}
-
-<br/>
-Testing hibernate changes with spring web mvc :
 <br/>
 
-Test Login Id : ${logindetails.loginuser} 
-<br/>
-Test Password : ${logindetails.password}
-<br/>	
-
-<a href="signup">New user? Please signup here</a>
+New user? <a href="showSignupPage">Signup Here</a> | Already have account ? <a href="showLoginPage">Login Here</a> 
 
 <jsp:include page="fragments/footer.jsp" />
-
+</div>
 </body>
 </html>

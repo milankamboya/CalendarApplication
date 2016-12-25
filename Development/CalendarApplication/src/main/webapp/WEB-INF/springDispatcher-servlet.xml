@@ -30,5 +30,25 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
+	<beans:bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<beans:property name="basename" value="classpath:message" />
+		<beans:property name="defaultEncoding" value="UTF-8" />
+	</beans:bean>
+
+	<beans:bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+		<beans:property name="defaultLocale" value="en" />
+		<beans:property name="cookieName" value="myAppLocaleCookie"></beans:property>
+		<beans:property name="cookieMaxAge" value="3600"></beans:property>
+	</beans:bean>
+
+	<interceptors>
+		<beans:bean
+			class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<beans:property name="paramName" value="locale" />
+		</beans:bean>
+	</interceptors>
+
 	<mvc:resources mapping="/resources/**" location="/resources/core/"/>
 </beans:beans>

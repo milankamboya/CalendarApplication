@@ -29,7 +29,7 @@
 			<column name="Date_Of_Birth" length="10" not-null="true" />
 		</property>
 		
-		<property name="address" type="blob">
+		<property name="address" type="string">
 			<column name="Address" not-null="false" />
 		</property>
 		
