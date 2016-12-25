@@ -17,9 +17,9 @@
 			<column name="Password" length="25" not-null="true" />
 		</property>
 		
-		<one-to-one name="user" class="com.global.model.UserMaster" fetch="select"/>
-		<!-- <many-to-one name="user" class="com.global.model.UserMaster" unique="true">
+		<!-- <one-to-one name="user_Id" class="com.global.model.UserMaster" fetch="select" cascade="save-update"/> -->
+		<many-to-one name="user_Id" class="com.global.model.UserMaster" unique="true">
 			<column name="User_Id" length="25" not-null="true" />
-		</many-to-one> -->
+		</many-to-one>
 	</class>
 </hibernate-mapping>

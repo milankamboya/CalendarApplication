@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-@ControllerAdvice
+//@ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	public static final String DEFAULT_ERROR_VIEW = "error";
 
 	private final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 	
-	@ExceptionHandler(value = Exception.class)
+	//@ExceptionHandler(value = Exception.class)
 	public ModelAndView defaultErrorHandler(HttpServletRequest req, Exception e) throws Exception {
 		
 		logger.error("[URL] : {}", req.getRequestURL(), e);

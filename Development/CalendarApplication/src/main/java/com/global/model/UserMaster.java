@@ -1,7 +1,6 @@
 package com.global.model;
 
 import java.io.Serializable;
-import java.sql.Clob;
 
 public class UserMaster implements Serializable {
 	private static final long serialVersionUID = -324595582109215711L;
@@ -12,7 +11,7 @@ public class UserMaster implements Serializable {
 	private String gender;
 	private String phone;
 	private String dateOfbirth;
-	private Clob address;
+	private String address;
 	private String userLanguage;
 	private String timeZone;
 	private String email;
@@ -21,7 +20,7 @@ public class UserMaster implements Serializable {
 	public UserMaster(){}
 
 	public UserMaster(String userId, String firstName, String lastName, 
-			String gender, String phone, String dateOfbirth, Clob address, 
+			String gender, String phone, String dateOfbirth, String address, 
 			String userLanguage, String timeZone, String email, String isIsolated) {
 		this.userId = userId;
 		this.firstName = firstName;
@@ -84,11 +83,11 @@ public class UserMaster implements Serializable {
 		this.dateOfbirth = dateOfbirth;
 	}
 
-	public Clob getAddress() {
+	public String getAddress() {
 		return address;
 	}
 
-	public void setAddress(Clob address) {
+	public void setAddress(String address) {
 		this.address = address;
 	}
 

@@ -8,7 +8,7 @@ public class LoginMaster implements Serializable {
 	private String loginId;
 	private String userName;
 	private String password;
-	private UserMaster user;
+	private UserMaster user_Id;
 
 	public LoginMaster() {
 	}
@@ -17,7 +17,7 @@ public class LoginMaster implements Serializable {
 		this.loginId = loginId;
 		this.userName = userName;
 		this.password = password;
-		this.user = user;
+		this.user_Id = user;
 	}
 
 	public String getLoginId() {
@@ -44,12 +44,12 @@ public class LoginMaster implements Serializable {
 		this.password = password;
 	}
 
-	public UserMaster getUser() {
-		return user;
+	public UserMaster getUser_Id() {
+		return user_Id;
 	}
 
-	public void setUser(UserMaster user) {
-		this.user = user;
+	public void setUser_Id(UserMaster user_Id) {
+		this.user_Id = user_Id;
 	}
 
 }

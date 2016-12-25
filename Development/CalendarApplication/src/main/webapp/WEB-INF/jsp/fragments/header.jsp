@@ -1,3 +1,4 @@
+<%@page import="org.apache.commons.lang3.StringUtils"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ page isELIgnored="false" %>
@@ -15,6 +16,11 @@
 
 <nav class="navbar navbar-inverse ">
 	<div class="container">
+		<%-- <%! String username=session.getAttribute("username"); %> --%>
+		<% 
+		String user = (String)session.getAttribute("username");
+		if(!StringUtils.isEmpty(user)){
+		%>
 		<div class="navbar-header">
 			<a class="navbar-brand" href="${urlHome}">Calendar Dashboard</a>
 		</div>
@@ -22,6 +28,9 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li class="active"><a href="${urlAddUser}">Add User</a></li>
 			</ul>
-		</div>
+		</div>		
+		<%
+		}
+		%>
 	</div>
 </nav>
