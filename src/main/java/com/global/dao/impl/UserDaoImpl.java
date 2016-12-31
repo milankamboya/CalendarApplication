@@ -2,6 +2,11 @@ package com.global.dao.impl;
 
 import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,4 +32,24 @@ public class UserDaoImpl implements UserDao
 	{
 		hibernateDao.persist(newUser);
 	}
+
+	public List selectUserDetails(String userName) 
+	{
+		//Object[] queryParam = {userName};
+		//String queryString= "select u.email, password, role from UserMaster u, LoginMaster l, UserRoles r where u.id = r.user_id and u.id = l.user_id and email=?";
+		//List<Map<String,Object>> data = hibernateDao.selectByNamedQuery("userDetailsSelectQuery", userName);
+		List<Object[]> data = hibernateDao.selectByNamedQuery1("userDetailsSelectQuery", userName);
+		Object[] row = data.get(0);
+		
+		//return data;
+		List userDetailList = new ArrayList();
+		Map<String, String> userDetailMap = new HashMap<String, String>();
+		userDetailMap.put("email", (String) row[0]);
+		userDetailMap.put("password", (String)row[1]);
+		userDetailMap.put("role", (String)row[2]);
+		userDetailList.add(userDetailMap);
+		return userDetailList;
+	}
+	
+	
 }

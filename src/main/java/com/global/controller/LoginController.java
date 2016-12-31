@@ -3,7 +3,14 @@ package com.global.controller;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -12,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.global.model.LoginMaster;
 import com.global.model.UserMaster;
 import com.global.service.UserService;
 import com.global.service.Validator;
@@ -26,10 +34,20 @@ public class LoginController
 	UserService userService;
 	
 	@RequestMapping (value="/welcome")
-	public String welcomePage(ModelMap model) {
+	public String welcomePage(ModelMap model) 
+	{
 		String message = "Global Calendar";
 		model.addAttribute("message", message);
 		return "welcome";
+	}
+	
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	public String home(HttpServletRequest request, Model model) 
+	{
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth == null? "guest" : (auth.getName() == null ? "guest" : auth.getName());
+		model.addAttribute("user", name);
+		return "home";
 	}
 	
 	@RequestMapping (value="/doSignup", method = RequestMethod.POST)
@@ -80,8 +98,27 @@ public class LoginController
 	}
 	
 	@RequestMapping(value = "/error", method = RequestMethod.GET)
-	public String errorPage(Model model) {
+	public String errorPage(Model model) 
+	{
 		return "error";
 	}
 	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String loginPage(Model model) 
+	{
+		LoginMaster lm = new LoginMaster();
+		model.addAttribute("loginForm", lm);
+		return "login";
+	}
+	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpServletRequest request, HttpServletResponse response) 
+	{
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null)
+        {    
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+        }
+		return "redirect:/welcome";
+	}
 }

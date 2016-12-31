@@ -1,5 +1,7 @@
 package com.global.dao;
 
+import java.util.List;
+
 import com.global.model.UserMaster;
 
 public interface UserDao 
@@ -16,5 +18,11 @@ public interface UserDao
 	 * @param newUser
 	 */
 	public void insertNewUser(UserMaster newUser);
+	
+	/**
+	 * 
+	 * @param userName
+	 */
+	public List selectUserDetails(String userName);
 	
 }

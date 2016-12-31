@@ -7,12 +7,14 @@
 <title></title>
 	<spring:url value="/resources/css/hello.css" var="coreCss" />
 	<spring:url value="/resources/css/bootstrap.min.css" var="bootstrapCss" />
+	<spring:url value="/resources/css/global.css" var="globalCss" />
 	<link href="${bootstrapCss}" rel="stylesheet" />
 	<link href="${coreCss}" rel="stylesheet" />
+	<link href="${globalCss}" rel="stylesheet" />
 </head>
 
-<spring:url value="/" var="urlHome" />
-<spring:url value="/users/add" var="urlAddUser" />
+<spring:url value="/home" var="urlHome" />
+<spring:url value="/logout" var="logoutUrl" />
 
 <nav class="navbar navbar-inverse ">
 	<div class="container">
@@ -26,7 +28,7 @@
 		</div>
 		<div id="navbar">
 			<ul class="nav navbar-nav navbar-right">
-				<li class="active"><a href="${urlAddUser}">Add User</a></li>
+				<li class="active"><a href="${logoutUrl}">Logout</a></li>
 			</ul>
 		</div>		
 		<%

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+	<!-- <query name="userDetailsSelectQuery">
+		select u.email, l.password, r.roleName 
+		from com.global.model.UserMaster u, com.global.model.LoginMaster l, com.global.model.UserRoles r 
+		where u.userId = r.user_Id 
+		and u.userId = l.user_Id 
+		and u.email = :email
+	</query> -->
+	
+	<sql-query name="userDetailsSelectQuery">
+		select u.email, l.password, r.role 
+		from User_Master u, Login_Master l, User_Roles r 
+		where u.Id = r.user_Id 
+		and u.Id = l.user_Id 
+		and u.email = :email
+	</sql-query>
+	
+</hibernate-mapping>

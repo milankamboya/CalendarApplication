@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping default-cascade="save-update" auto-import="false">
+	<class name="com.global.model.UserRoles" table="user_roles">
+		<id name="userRoleId" type="string">
+			<column name="ID" length="25" />
+			<generator class="assigned" />
+		</id>
+		<property name="roleName" type="string">
+			<column name="Role" length="25" not-null="true" />
+		</property>
+		
+		<!-- <one-to-one name="user_Id" class="com.global.model.UserMaster" fetch="select" cascade="save-update"/> -->
+		<many-to-one name="user_Id" class="com.global.model.UserMaster" unique="true">
+			<column name="User_Id" length="25" not-null="true" />
+		</many-to-one>
+	</class>
+</hibernate-mapping>

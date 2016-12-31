@@ -1,0 +1,15 @@
+@CHARSET "ISO-8859-1";
+.col-sm-10-global
+{
+	width: 25%;	
+}
+
+.control-label-global
+{
+	margin-left: 24.5%;
+}
+
+.col-sm-10-global-button
+{
+	width : 49.5%
+}

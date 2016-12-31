@@ -4,12 +4,18 @@ import static com.global.common.framework.impl.GlobalConstants.N;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.global.common.framework.HelperUtils;
+import com.global.common.framework.security.CustomRole;
+import com.global.common.framework.security.CustomUser;
 import com.global.dao.UserDao;
 import com.global.model.LoginMaster;
 import com.global.model.UserMaster;
@@ -81,6 +87,21 @@ public class UserServiceImpl implements UserService
 		newUserLoginObj.setLoginId(helperUtils.generateSequenceId());
 		newUserLoginObj.setUser_Id(newUser);
 		loginService.addNewUserLoginDetails(newUserLoginObj);
+	}
+
+	public UserDetails loadUserDetails(String userName) 
+	{
+		List userDetail = userDao.selectUserDetails(userName);
+		Map userMap = (Map) userDetail.get(0);
+		String username = (String) userMap.get("email");
+		String password = (String) userMap.get("password");
+		CustomRole roleObj = new CustomRole();
+		roleObj.setRoleName((String) userMap.get("role"));
+		List<CustomRole> authorities = new ArrayList<CustomRole>();
+		authorities.add(roleObj);	
+		
+		CustomUser userDetailObj = new CustomUser(username, password, true, true, true, true, authorities);
+		return userDetailObj;
 	}
 
 }
