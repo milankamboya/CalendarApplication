@@ -91,16 +91,21 @@ public class UserServiceImpl implements UserService
 
 	public UserDetails loadUserDetails(String userName) 
 	{
+		CustomUser userDetailObj = null;
 		List userDetail = userDao.selectUserDetails(userName);
-		Map userMap = (Map) userDetail.get(0);
-		String username = (String) userMap.get("email");
-		String password = (String) userMap.get("password");
-		CustomRole roleObj = new CustomRole();
-		roleObj.setRoleName((String) userMap.get("role"));
-		List<CustomRole> authorities = new ArrayList<CustomRole>();
-		authorities.add(roleObj);	
+		if(userDetail.size() > 0)
+		{
+			Map userMap = (Map) userDetail.get(0);
+			String username = (String) userMap.get("email");
+			String password = (String) userMap.get("password");
+			CustomRole roleObj = new CustomRole();
+			roleObj.setRoleName((String) userMap.get("role"));
+			List<CustomRole> authorities = new ArrayList<CustomRole>();
+			authorities.add(roleObj);	
+			
+			userDetailObj = new CustomUser(username, password, true, true, true, true, authorities);			
+		}
 		
-		CustomUser userDetailObj = new CustomUser(username, password, true, true, true, true, authorities);
 		return userDetailObj;
 	}
 

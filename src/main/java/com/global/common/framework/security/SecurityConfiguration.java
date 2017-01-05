@@ -20,6 +20,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter
 	private CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
 	
 	@Autowired
+	private CustomAuthenticationFailureHandler customAuthenticationFailureHandler;
+	
+	@Autowired
     private CustomUserService userService;
 	
 	@Override
@@ -30,7 +33,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter
 			.authorizeRequests().antMatchers("/**").authenticated()
 			.and().formLogin().loginPage("/login")
 			.usernameParameter("userName").passwordParameter("password").permitAll()
-			.successHandler(customAuthenticationSuccessHandler);
+			//.failureUrl("/login?error")
+			.successHandler(customAuthenticationSuccessHandler)
+			.failureHandler(customAuthenticationFailureHandler);
 	}
 	
 	@Override
@@ -47,7 +52,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter
     }
 	
     @Bean
-    public CustomAuthenticationProvider authenticationProvider() throws Exception {
+    public CustomAuthenticationProvider authenticationProvider() throws Exception 
+    {
     	CustomAuthenticationProvider customAuthenticationProvider = new CustomAuthenticationProvider();
     	customAuthenticationProvider.setPasswordEncoder(passwordEncoder());
     	customAuthenticationProvider.setUserDetailsService(userService);

@@ -47,27 +47,26 @@ public class HibernateDaoImpl extends HibernateDaoSupport implements HibernateDa
 		return data;*/
 		
 		if (logger.isDebugEnabled()) logger.debug("selecting data for query : " + namedQueryString+" and parameteres ="+ param.toString());
-		List data = getHibernateTemplate().execute(new HibernateCallback() {
+		List<Map<String, Object>> data = (List<Map<String, Object>>) getHibernateTemplate().execute(new HibernateCallback<Object>() {
 			public Object doInHibernate(Session session) throws HibernateException {
 				session.setHibernateFlushMode(FlushMode.COMMIT);
-				Query query = session.getNamedQuery(namedQueryString);  
+				Query<?> query = session.getNamedQuery(namedQueryString);  
 			    query.setString("email", param);  
 			    return query.setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).list();
-				//return query.list();
 			}
 		});
 		
 		return data;
 	}
 	
-	public List selectByNamedQuery1(final String namedQueryString, final String param) 
+	/*public List selectByNamedQuery1(final String namedQueryString, final String param) 
 	{
-		/*if (logger.isDebugEnabled()) logger.debug("selecting data for query : " + queryString+" and parameteres ="+ values.toString());
+		if (logger.isDebugEnabled()) logger.debug("selecting data for query : " + queryString+" and parameteres ="+ values.toString());
 		List data = getHibernateTemplate().find(queryString, values);
-		return data;*/
+		return data;
 		
 		if (logger.isDebugEnabled()) logger.debug("selecting data for query : " + namedQueryString+" and parameteres ="+ param.toString());
-		List data = getHibernateTemplate().execute(new HibernateCallback() {
+		List<Object[]> data = (List) getHibernateTemplate().execute(new HibernateCallback() {
 			public Object doInHibernate(Session session) throws HibernateException {
 				session.setHibernateFlushMode(FlushMode.COMMIT);
 				Query query = session.getNamedQuery(namedQueryString);  
@@ -78,6 +77,6 @@ public class HibernateDaoImpl extends HibernateDaoSupport implements HibernateDa
 		});
 		
 		return data;
-	}
+	}*/
 	
 }

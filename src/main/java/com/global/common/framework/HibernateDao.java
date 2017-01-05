@@ -11,5 +11,5 @@ public interface HibernateDao
 	
 	public List selectByNamedQuery(String namedQueryString, String param);
 	
-	public List selectByNamedQuery1(String namedQueryString, String param);
+	//public List selectByNamedQuery1(String namedQueryString, String param);
 }

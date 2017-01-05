@@ -2,8 +2,6 @@ package com.global.dao.impl;
 
 import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -35,10 +33,9 @@ public class UserDaoImpl implements UserDao
 
 	public List selectUserDetails(String userName) 
 	{
-		//Object[] queryParam = {userName};
-		//String queryString= "select u.email, password, role from UserMaster u, LoginMaster l, UserRoles r where u.id = r.user_id and u.id = l.user_id and email=?";
-		//List<Map<String,Object>> data = hibernateDao.selectByNamedQuery("userDetailsSelectQuery", userName);
-		List<Object[]> data = hibernateDao.selectByNamedQuery1("userDetailsSelectQuery", userName);
+		List<Map<String,Object>> data = hibernateDao.selectByNamedQuery("userDetailsSelectQuery", userName);
+		return data;
+		/*List<Object[]> data = hibernateDao.selectByNamedQuery1("userDetailsSelectQuery", userName);
 		Object[] row = data.get(0);
 		
 		//return data;
@@ -48,7 +45,7 @@ public class UserDaoImpl implements UserDao
 		userDetailMap.put("password", (String)row[1]);
 		userDetailMap.put("role", (String)row[2]);
 		userDetailList.add(userDetailMap);
-		return userDetailList;
+		return userDetailList;*/
 	}
 	
 	

@@ -17,10 +17,10 @@ public class CustomUserService implements UserDetailsService
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException 
 	{
 		UserDetails user = userService.loadUserDetails(username);
-        if(user==null)
+        /*if(user==null)
         {
             throw new UsernameNotFoundException("Username not found"); 
-        }
+        }*/
 		return user;
 	}
 
