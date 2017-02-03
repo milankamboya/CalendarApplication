@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.global.model.LoginMaster;
 import com.global.model.UserMaster;
 import com.global.service.UserService;
 import com.global.service.Validator;
@@ -82,6 +83,14 @@ public class LoginController
 	@RequestMapping(value = "/error", method = RequestMethod.GET)
 	public String errorPage(Model model) {
 		return "error";
+	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String loginPage(Model model) 
+	{
+		LoginMaster lm = new LoginMaster();
+		model.addAttribute("loginForm", lm);
+		return "login";
 	}
 	
 }
